@@ -388,7 +388,7 @@ function accountLogin() {
                     var url = data.url.trim();
 
                     window.location = url + '.html';
-                    
+
                     break;
 
                 default:
@@ -413,15 +413,42 @@ function message(msg) {
 }
 
 function startSurvey(e) {
+
+
+    /* get the hidden ip field */
+    var ip = $('input#input-ip').val();
+    var url = 'http://' + ip + '/survey/start';
+
+    var settings = {
+        url: url,
+        type: 'POST',
+        data: '',
+        dataType: 'json'
+    };
+    /*
     var settings = {
         url: '/survey/start',
         type: 'GET',
         data: '',
         dataType: 'json'
     };
-
+    */
     var callback = function(data) {
-        renderQuestion(data);
+        if(data && data.statusCode) {
+
+            switch(parseInt(data.statusCode)){
+
+                case 401:
+
+                    /* redirect to login */
+                    //window.location = 'index.html';
+
+                    break;
+                case 200:
+                    renderQuestion(data);
+                    break;
+            }
+        }
     }
 
     $.ajax(settings).done(callback);

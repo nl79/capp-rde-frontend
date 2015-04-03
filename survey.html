@@ -17,139 +17,111 @@
 	
   </head>
   <body>
-    
+    <input id="input-ip" type="hidden" name="ip" value="192.168.1.14">
 
 	
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="slide-nav">
-  <div class="container">
-   <div class="navbar-header">
-    <a class="navbar-toggle"> 
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-     </a>
-    <a class="navbar-brand" href="#">RDE Systems Survey</a>
-   </div>
-   <div id="slidemenu">
-     
-	
-          <form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-              <input type="search" placeholder="search" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary">Search</button>
-          </form>
-		  
-     
-    <ul class="nav navbar-nav">
-     <li class="active"><a href="#">Survey Page</a></li>
-     <li><a href="#about">Terms of Agreement</a></li>
-     <li><a href="#contact">Contact Us</a></li>
-	 <li><a href="#exit">Exit</a></li>
-	 
-    </ul>
-          
-   </div>
-  </div>
+        <div class="container">
+           <div class="navbar-header">
+            <a class="navbar-toggle">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+             </a>
+            <a class="navbar-brand" href="#">RDE Systems Survey</a>
+           </div>
+           <div id="slidemenu">
+
+
+              <form class="navbar-form navbar-right" role="form">
+                <div class="form-group">
+                  <input type="search" placeholder="search" class="form-control">
+                </div>
+                <button type="button" class="btn btn-primary">Search</button>
+              </form>
+
+
+                <ul class="nav navbar-nav">
+                     <li class="active"><a href="#">Survey Page</a></li>
+                     <li><a href="#about">Terms of Agreement</a></li>
+                     <li><a href="#contact">Contact Us</a></li>
+                     <li><a href="#exit">Logout</a></li>
+                     <li><button type="button" onclick="config(this)" class="btn btn-primary">Settings</button></li>
+
+                </ul>
+
+           </div>
+    </div>
  </div>
   
   
-  <!--wrap the page content do not style this-->
+  <!--wrap the page content do not style this -->
  <div id="page-content">
-   
-  <div class="container">
-    
-	
-	<div class="box1" action="#">
-		<form class="form-horizontal">
-			<div class="form-group">
-			<br>
-			<h3> Question 1 </h3>
-    
-		<div class="checkbox">
-			<label>
-			<input type="checkbox" value="">
-			Answer 1
-			</label>
-		</div>
-		<div class="checkbox">
-			<label>
-			<input type="checkbox" value="">
-			Answer 2
-			</label>
-		</div>
-		<div class="checkbox">
-			<label>
-			<input type="checkbox" value="">
-			Answer 3
-			</label>
-		</div>
-		<div class="checkbox">
-			<label>
-			<input type="checkbox" value="">
-			Answer 4
-			</label>
-		</div>
-		<input type="submit" value="Submit" class="sub1">
-		
-		</form>
-		</div> <!--div for box1-->
-		
+
+     <p class="text-center">
+         <button id="button-start-survey"
+                 type="button"
+                 class="btn btn-info"
+                 onclick="startSurvey(this)"
+                 name="start-survey">START SURVEY</button>
+
+     </p>
+
+
+     <!-- <div class="container">
+
+
+       <div class="box1" action="#">
+           <form class="form-horizontal">
+               <div class="form-group">
+               <br>
+               <h3> Question 1 </h3>
+
+           <div class="checkbox">
+               <label>
+               <input type="checkbox" value="">
+               Answer 1
+               </label>
+           </div>
+           <div class="checkbox">
+               <label>
+               <input type="checkbox" value="">
+               Answer 2
+               </label>
+           </div>
+           <div class="checkbox">
+               <label>
+               <input type="checkbox" value="">
+               Answer 3
+               </label>
+           </div>
+           <div class="checkbox">
+               <label>
+               <input type="checkbox" value="">
+               Answer 4
+               </label>
+           </div>
+           <input type="submit" value="Submit" class="sub1">
+
+           </form>
+
+           </div> <!--div for box1
+
 		<p class="text-center">
-		<button type="button" class="btn btn-info">Previous</button>
-		<button type="button" class="btn btn-info">Next</button>
+		    <button type="button" class="btn btn-info">Previous</button>
+		    <button type="button" class="btn btn-info">Next</button>
+            <button type="button" class="btn btn-info">Next</button>
 		</p>
 		
-		
-	
-	
-	<div class="box2" style="display:none">
-		<form class="form-horizontal">
-		<div class="form-group">
-		<br>
-		<h3>Question 2</h3>
-		<div class="radio">
-			<label>
-			<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-			Answer 1
-			</label>
-		</div>
-		<div class="radio">
-			<label>
-			<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-			Answer 2
-			</label>
-		</div>
-		<div class="radio">
-			<label>
-			<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-			Answer 3
-			</label>
-		</div>
-		<div class="radio">
-			<label>
-			<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-			Answer 4
-			</label>
-		</div>
-		</form>
-	</div> <!--div for box2-->
-	
-    
-    
-   </div>
+
+
+   </div> -->
   <!-- /.container -->
   
  </div>
  <!-- /#page-content -->
-	
-	
-	
-	
-	
-	
-	
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
