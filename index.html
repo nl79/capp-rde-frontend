@@ -1,116 +1,71 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>RDE Systems</title>
-        <meta name="viewport" content="width-device-width, initial-scale=1.0">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/styles.css" rel="stylesheet">
-        
-        <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">          </script> -->
-		<script src= "js/jquery-2.1.3.js"></script>
-		<script src= "js/main.js"></script>
-		<!-- <script src= "js/bootstrap.js"></script> -->
-	
-		<script type="text/javascript" src="jquery.bootpag.js"></script>
-        
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/style.js"></script>
-        
-        
-        
-         <script type="text/javascript">
-      $(document).ready(function() {
-        $('.carousel').carousel({interval: 7000});
-      });
-    </script>
+<head>
+    <title>RDE Systems</title>
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 
-    <style>
-      .carousel { z-index: -99; }
-      .carousel .item {
-        position: fixed; 
-        width: 100%; height: 100%;
-        -webkit-transition: opacity 1s;
-        -moz-transition: opacity 1s;
-        -ms-transition: opacity 1s;
-        -o-transition: opacity 1s;
-        transition: opacity 1s;
+    <script src= "js/jquery-2.1.3.js"></script>
 
-      }
-      .carousel .one {
-        background: url(img/night.jpg);
-        background-size: cover;
-        -moz-background-size: cover;
-      }
-      .carousel .two {
-        background: url(img/mount.jpg);
-        background-size: cover;
-        -moz-background-size: cover;
-      }
-      .carousel .three {
-        background: url(img/birds.jpg);
-        background-size: cover;
-        -moz-background-size: cover;
-      }
-      .carousel .active.left {
-        left:0;
-        opacity:0;
-        z-index:2;
-      }
-    </style>
 
-    </head>
-    <body>
-    <div id="div-page">
-        <input id="input-ip" type="hidden" name="ip" value="192.168.1.14">
 
-     <div id="myCarousel" class="carousel container slide">
-      <!-- Carousel items -->
-      <div class="carousel-inner">
-                <div class="active item one"></div>
-                <div class="item two"></div>
-                <div class="item three"></div>
-      </div>
-    </div>
+</head>
+<body>
+<div id="div-page">
+    <div class="container">
+        <div class="row vertical-offset-100">
+            <div class="col-md-4 col-md-offset-4" style="text-align: center">
+                <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
+                <div class="panel panel-default" style="background-color: rgba(245, 245, 245, 0.4); text-align: center">
 
-  <div class="container">
-                <div class="row vertical-offset-100">
-                    <div class="col-md-4 col-md-offset-4" style="text-align: center">
-                        <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
-                        <div class="panel panel-default" style="background-color: rgba(245, 245, 245, 0.4); text-align: center">
-
-                            <div class="panel-heading" style="background-color: rgba(245, 245, 245, 0.4);">                                
-                                <div class="row-fluid user-row" style="align: center; ">
-                                    <img src="img/ecompas.png" class="img-responsive" style="height: 150px; width: 150px"/>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <form id="form-login" accept-charset="UTF-8" role="form" class="form-signin" action="survey.html">
-                                    <fieldset>
-                                        <label class="panel-login">
-                                            <div class="login_result"><p id="p-message"></p></div>
-                                        </label>
-                                        <br />
-										<label class="">TOS</label>
-                                        <input class="form-control" placeholder="TOS" name="tos" type="checkbox">
-                                        <input class="form-control" placeholder="Enter Code" id="input-s_code" name='s_code' type="text">
-                                        <br></br>
-                                        <input class="btn btn-lg btn-success btn-block" onclick='accountLogin(this)' type="button" id="login" value="Start Survey">
-										
-										<input class="btn btn-lg btn-success btn-block" onclick='config(this)' type="button" id="button-config" value="Config">
-                                   
-                                    </fieldset>
-                                </form>
-                            </div>
+                    <div class="panel-heading" style="background-color: rgba(245, 245, 245, 0.4);">
+                        <div class="row-fluid user-row" style="align: center; ">
+                            <img src="img/ecompas.png" class="img-responsive" style="height: 150px; width: 150px"/>
                         </div>
+                    </div>
+                    <div class="panel-body">
+                        <form id="form-login" accept-charset="UTF-8" role="form" class="form-signin" action="survey.html">
+                            <fieldset>
+                                <label class="panel-login">
+                                    <div class="login_result"><p id="p-message"></p></div>
+                                </label>
+                                <br />
+
+                                <input class="form-control" placeholder="Enter Server IP" id="input-ip" name='ip' type="text">
+                                <br></br>
+                                <input class="btn btn-lg btn-success btn-block" onclick='submitIp(this)' type="button" id="login" value="Submit">
+
+                            </fieldset>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
-    </body>
-    
-    
-    
+</div>
+
+</div>
+<script>
+    function submitIp() {
+
+        var ip = $('input#input-ip').val();
+        if(!ip) {
+            alert("IP Address Required");
+            return;
+        }
+
+        /* load the server page */
+        var url = 'http://' + ip;
+
+        window.sessionStorage.ip = ip;
+
+        window.location = url;
+    }
+</script>
+
+</body>
+
+
+
 </html>

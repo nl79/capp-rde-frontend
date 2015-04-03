@@ -8,6 +8,24 @@ Number.isInteger = Number.isInteger || function(value) {
         Math.floor(value) === value;
 };
 
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
 /********************************************************************************/
 
 
@@ -357,9 +375,12 @@ function logout() {
 
 function config() {
 	/* prompt the user for the ip address */ 
-	var ip = prompt("Enter Server's IP Address(xxx.xxx.xxxx.xxxx)"); 
-	
-	alert(ip); 
+	var ip = prompt("Enter Server's IP Address(xxx.xxx.xxxx.xxxx)");
+
+    $('input#input-ip').val(ip);
+
+    var tempStorage = window.sessionStorage;
+    tempStorage.ip = ip;
 }
 
 function accountLogin() {
@@ -375,15 +396,22 @@ function accountLogin() {
         dataType: 'json'
     };
 
-    var callback = function(data) {
-
-        console.log(data);
+    var callback = function(data, status, xhr) {
 
         if(data && data.statusCode) {
 
             switch(parseInt(data.statusCode)){
 
                 case 302:
+
+                    /* get the session id and set it as cookie */
+                    var JSESSIONID = data.JSESSIONID;
+
+                    if(JSESSIONID) { setCookie('JSESSIONID', JSESSIONID, -1)}
+
+                    var tempStorage = window.sessionStorage;
+                    tempStorage.JSESSIONID = JSESSIONID;
+
                     /* redirect */
                     var url = data.url.trim();
 
@@ -413,10 +441,16 @@ function message(msg) {
 }
 
 function startSurvey(e) {
+    var tempStorage = window.sessionStorage;
 
+    console.log(tempStorage);
 
-    /* get the hidden ip field */
-    var ip = $('input#input-ip').val();
+    /* get the hidden ip field
+     * or load it from the temp storage
+     */
+    var ip = tempStorage.ip || $('input#input-ip').val();
+
+    //var ip = $('input#input-ip').val();
     var url = 'http://' + ip + '/survey/start';
 
     var settings = {
