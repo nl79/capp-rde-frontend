@@ -363,21 +363,75 @@ function config() {
 }
 
 function accountLogin() {
-	alert('logging in'); 
+	/* get the hidden ip field */
+    var ip = $('input#input-ip').val();
+    var url = 'http://' + ip + '/account/login';
+    var data = $('form#form-login').serialize();
+
+    var settings = {
+        url: url,
+        type: 'POST',
+        data: data,
+        dataType: 'json'
+    };
+
+    var callback = function(data) {
+
+        console.log(data);
+
+        if(data && data.statusCode) {
+
+            switch(parseInt(data.statusCode)){
+
+                case 302:
+                    /* redirect */
+                    var url = data.url.trim();
+
+                    window.location = url + '.html';
+                    
+                    break;
+
+                default:
+
+                    message(data.message);
+                    break;
+
+            }
+        }
+    }
+
+    $.ajax(settings).done(callback);
 }
 
 function finished() {
     alert('survey finished');
 }
 
-function message(data) {
-    console.log(data.message);
-    $('p#p-message').text(data.message);
+function message(msg) {
+
+    $('p#p-message').text(msg);
+}
+
+function startSurvey(e) {
+    var settings = {
+        url: '/survey/start',
+        type: 'GET',
+        data: '',
+        dataType: 'json'
+    };
+
+    var callback = function(data) {
+        renderQuestion(data);
+    }
+
+    $.ajax(settings).done(callback);
 }
 
 function error(data) {
 
 }
+
+/*
 $(document).ready(function() {
     $('button#button-start-survey').on('click', function(e){
         var settings = {
@@ -397,3 +451,5 @@ $(document).ready(function() {
 
     $('button#button-logout').on('click', logout);
 })
+
+    */

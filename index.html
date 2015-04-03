@@ -60,13 +60,12 @@
         z-index:2;
       }
     </style>
-        
-        
-        
-        
+
     </head>
     <body>
-    
+    <div id="div-page">
+        <input id="input-ip" type="hidden" name="ip" value="192.168.1.14">
+
      <div id="myCarousel" class="carousel container slide">
       <!-- Carousel items -->
       <div class="carousel-inner">
@@ -88,16 +87,17 @@
                                 </div>
                             </div>
                             <div class="panel-body">
-                                <form accept-charset="UTF-8" role="form" class="form-signin" action="survey.html">
+                                <form id="form-login" accept-charset="UTF-8" role="form" class="form-signin" action="survey.html">
                                     <fieldset>
                                         <label class="panel-login">
-                                            <div class="login_result"></div>
+                                            <div class="login_result"><p id="p-message"></p></div>
                                         </label>
+                                        <br />
 										<label class="">TOS</label>
                                         <input class="form-control" placeholder="TOS" name="tos" type="checkbox">
-                                        <input class="form-control" placeholder="Enter Code" id="input-s_code" type="text">
+                                        <input class="form-control" placeholder="Enter Code" id="input-s_code" name='s_code' type="text">
                                         <br></br>
-                                        <input class="btn btn-lg btn-success btn-block" onclick='accountLogin(this)' type="submit" id="login" value="Start Survey">
+                                        <input class="btn btn-lg btn-success btn-block" onclick='accountLogin(this)' type="button" id="login" value="Start Survey">
 										
 										<input class="btn btn-lg btn-success btn-block" onclick='config(this)' type="button" id="button-config" value="Config">
                                    
@@ -108,7 +108,7 @@
                     </div>
                 </div>
             </div>
-        
+    </div>
     </body>
     
     
