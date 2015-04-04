@@ -105,14 +105,15 @@ function renderQuestion(resp) {
             html += "</textarea><br />";
         }
 
+        /*
         html +='<p class="text-center">';
         html += "<button class='btn btn-info' onclick='getQuestion(this)' " +
         "id='button-previous' type='button' name='submit' value='previous'>Prev</button>";
 
-        /*
+
          html += "<button onclick='submitAnswer(this)' " +
          "id='button-submit' type='button' name='submit' value='submit'>Submit</button>";
-         */
+
 
         html += "<button class='btn btn-info' onclick='getQuestion(this)' " +
         "id='button-next' type='button' name='submit' value='next'>Next</button>";
@@ -121,9 +122,10 @@ function renderQuestion(resp) {
         html += "<br />" +
         "<button class='btn btn-info' onclick='getQuestion(this)' id='button-skip' " +
         "type='button' name='submit' value='skip'>Skip</button>";
+        html += '</p>';
+        */
 
-
-        html += '</p></form></div>';
+        html += '</form></div>';
 
         document.getElementById('div-content').innerHTML = html;
     }
@@ -483,14 +485,7 @@ function startSurvey(e) {
         dataType: 'json',
         xhrFields: {withCredentials: true}
     };
-    /*
-    var settings = {
-        url: '/survey/start',
-        type: 'GET',
-        data: '',
-        dataType: 'json'
-    };
-    */
+
     var callback = function(data) {
         if(data && data.statusCode) {
 
@@ -504,6 +499,9 @@ function startSurvey(e) {
                     break;
                 case 200:
                     renderQuestion(data);
+
+                    /*set the buttons to visible */
+                    $('p#p-form-buttons').show();
                     break;
             }
         }
