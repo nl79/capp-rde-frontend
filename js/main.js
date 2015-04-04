@@ -43,12 +43,16 @@ function renderQuestion(resp) {
         var answers = [];
 
         //create the form element.
-        var html =  '<form id="form-question-data" method="post" action="/survey/submitAnswer">';
+        var html =  '<div class="text-center" action="#">' +
+            '<form  class="form-horizontal text-" id="form-question-data" method="post" action="/survey/submitAnswer">';
         html += '<input id="q_id" type="hidden" name="q_id" value="' + question.ENTITY_ID + '"/>';
         html += '<input id="q_type" type="hidden" name="q_type" value="' + question.TYPE.trim() + '"/>';
         html += '<input id="a_type" type="hidden" name="a_type" value="' + question.DATA_TYPE + '"/>';
 
-        html += '<p id="p-question">' + resp.data.question[0].QUESTION + '</p>';
+
+
+        html += '<div class="form-group"><br />' +
+        '<h3 id="h3-question">' + resp.data.question[0].QUESTION + '</h3></div>';
 
         var type = resp.data.question[0].TYPE.trim();
 
@@ -64,16 +68,16 @@ function renderQuestion(resp) {
                 }
 
                 /*loop and build the options list.
-                the values property of the input field must replace all comma ',' characters
-                with a '~' because coldfusion uses ',' as a list separator. Therefore
-                leaving the comma in place would split an option into pieces.
+                 the values property of the input field must replace all comma ',' characters
+                 with a '~' because coldfusion uses ',' as a list separator. Therefore
+                 leaving the comma in place would split an option into pieces.
                  */
                 for (var i = 0; i < options.length; i++) {
 
                     var value = options[i].VALUE.trim()
 
-
-                    html += "<input id='o_id-" + options[i].ENTITY_ID +
+                    html += "<div class='" + type + "'>";
+                    html += "<label><input id='o_id-" + options[i].ENTITY_ID +
                     "' type='" + type.trim() +
                     "' name='answer'" +
                     "' value='" + options[i].VALUE.trim().replace(',','~') + "'";
@@ -83,14 +87,14 @@ function renderQuestion(resp) {
                         html += " checked ";
                     }
 
-                    html += "/>" + value + "<br />";
+                    html += "/>" + value + "</label></div><br />";
 
                 }
             }
         } else if (type=='text') {
 
             /*check if answer is set for the current question and
-            set the data inside the id field and the value.
+             set the data inside the id field and the value.
              */
             html += "<textarea class='text' name='answer'>";
             if(answer && answer.length && answer.length > 0) {
@@ -101,24 +105,25 @@ function renderQuestion(resp) {
             html += "</textarea><br />";
         }
 
-        html += "<button onclick='getQuestion(this)' " +
+        html +='<p class="text-center">';
+        html += "<button class='btn btn-info' onclick='getQuestion(this)' " +
         "id='button-previous' type='button' name='submit' value='previous'>Prev</button>";
 
         /*
-        html += "<button onclick='submitAnswer(this)' " +
-        "id='button-submit' type='button' name='submit' value='submit'>Submit</button>";
-        */
+         html += "<button onclick='submitAnswer(this)' " +
+         "id='button-submit' type='button' name='submit' value='submit'>Submit</button>";
+         */
 
-        html += "<button onclick='getQuestion(this)' " +
+        html += "<button class='btn btn-info' onclick='getQuestion(this)' " +
         "id='button-next' type='button' name='submit' value='next'>Next</button>";
 
 
         html += "<br />" +
-        "<button onclick='getQuestion(this)' id='button-skip' " +
+        "<button class='btn btn-info' onclick='getQuestion(this)' id='button-skip' " +
         "type='button' name='submit' value='skip'>Skip</button>";
 
 
-        html += '</form>';
+        html += '</p></form></div>';
 
         document.getElementById('div-content').innerHTML = html;
     }
@@ -146,16 +151,22 @@ function getQuestion(e) {
         action = 'next';
     }
 
-    var url = 'load' + action;
-
     /* get the current question_id */
     var q_id = $("input#q_id").val();
 
+    /* get the hidden ip field
+     * or load it from the temp storage
+     */
+    var ip = window.sessionStorage.ip || $('input#input-ip').val();
+
+    var url = 'http://' + ip + '/survey/load' + action;
+
     var settings = {
-        url: '/survey/' + url,
+        url: url,
         type: 'POST',
         data: 'q_id=' + q_id,
-        dataType: 'json'
+        dataType: 'json',
+        xhrFields: {withCredentials: true}
     };
 
     var callback = function(data) {
@@ -183,11 +194,19 @@ function getQuestion(e) {
 function skipQuestion(e) {
     var q_id = $('input#q_id').val();
 
+    /* get the hidden ip field
+     * or load it from the temp storage
+     */
+    var ip = window.sessionStorage.ip || $('input#input-ip').val();
+
+    var url = 'http://' + ip + '/survey/skip';
+
     var settings = {
-        url: '/survey/skip',
+        url: url,
         type: 'POST',
         data: 'q_id=' + q_id,
-        dataType: 'json'
+        dataType: 'json',
+        xhrFields: {withCredentials: true}
     };
 
     var callback = function(data) {
@@ -222,16 +241,22 @@ function submitAnswer(ele){
     //serialize the form.
     var data = $('form#form-question-data').serialize();
 
+    /* get the hidden ip field
+     * or load it from the temp storage
+     */
+    var ip = window.sessionStorage.ip || $('input#input-ip').val();
+
+    var url = 'http://' + ip + '/survey/save';
+
     var settings = {
-        url: '/survey/save',
+        url: url,
         type: 'POST',
         data: data,
-        dataType: 'json'
+        dataType: 'json',
+        xhrFields: {withCredentials: true}
     };
 
     var callback = function(data) {
-
-
 
         if(data && data.statusCode) {
             switch(parseInt(data.statusCode)){
@@ -379,8 +404,8 @@ function config() {
 
     $('input#input-ip').val(ip);
 
-    var tempStorage = window.sessionStorage;
-    tempStorage.ip = ip;
+    window.sessionStorage.ip = ip;
+
 }
 
 function accountLogin() {
@@ -393,7 +418,8 @@ function accountLogin() {
         url: url,
         type: 'POST',
         data: data,
-        dataType: 'json'
+        dataType: 'json',
+        xhrFields: {withCredentials: true}
     };
 
     var callback = function(data, status, xhr) {
@@ -407,10 +433,11 @@ function accountLogin() {
                     /* get the session id and set it as cookie */
                     var JSESSIONID = data.JSESSIONID;
 
-                    if(JSESSIONID) { setCookie('JSESSIONID', JSESSIONID, -1)}
+                    if(JSESSIONID) {
+                        $.cookie('JSESSIONID', JSESSIONID, { path: '/' })
+                    }
 
-                    var tempStorage = window.sessionStorage;
-                    tempStorage.JSESSIONID = JSESSIONID;
+                    window.sessionStorage.JSESSIONID = JSESSIONID;
 
                     /* redirect */
                     var url = data.url.trim();
@@ -441,23 +468,20 @@ function message(msg) {
 }
 
 function startSurvey(e) {
-    var tempStorage = window.sessionStorage;
-
-    console.log(tempStorage);
 
     /* get the hidden ip field
      * or load it from the temp storage
      */
-    var ip = tempStorage.ip || $('input#input-ip').val();
+    var ip = window.sessionStorage.ip || $('input#input-ip').val();
 
-    //var ip = $('input#input-ip').val();
     var url = 'http://' + ip + '/survey/start';
 
     var settings = {
         url: url,
         type: 'POST',
         data: '',
-        dataType: 'json'
+        dataType: 'json',
+        xhrFields: {withCredentials: true}
     };
     /*
     var settings = {
