@@ -42,18 +42,18 @@ function renderQuestion(resp) {
         //array of answer values.
         var answers = [];
 
+        var html = '<div class="page-header"><h4>'+ resp.data.question[0].QUESTION + '</h4></div>'
         //create the form element.
-        var html =  '<div class="text-center" action="#">' +
-            '<form  class="form-horizontal text-" id="form-question-data" method="post" action="/survey/submitAnswer">';
+        html += '<form  class="form-horizontal text-" id="form-question-data" method="post" action="/survey/submitAnswer">';
         html += '<input id="q_id" type="hidden" name="q_id" value="' + question.ENTITY_ID + '"/>';
         html += '<input id="q_type" type="hidden" name="q_type" value="' + question.TYPE.trim() + '"/>';
         html += '<input id="a_type" type="hidden" name="a_type" value="' + question.DATA_TYPE + '"/>';
 
 
-
+        /*
         html += '<div class="form-group"><br />' +
         '<h3 id="h3-question">' + resp.data.question[0].QUESTION + '</h3></div>';
-
+        */
         var type = resp.data.question[0].TYPE.trim();
 
         if(type == 'radio' || type=='checkbox') {
@@ -125,7 +125,7 @@ function renderQuestion(resp) {
         html += '</p>';
         */
 
-        html += '</form></div>';
+        html += '</form>';
 
         document.getElementById('div-content').innerHTML = html;
     }
@@ -181,6 +181,13 @@ function getQuestion(e) {
 
                 case 204:
                     finished(data);
+                    break;
+
+                case 302:
+                    /* redirect */
+                    var url = data.url.trim();
+
+                    window.location = url + '.html';
                     break;
 
                 case 400:
@@ -392,11 +399,40 @@ function isValid() {
 }
 
 function logout() {
-    var q = prompt("Confirm Logout");
+    var q = confirm("Confirm Logout");
 
     if(q) {
         /* ajax call to the logout action */
-        console.log('logging out');
+
+        var ip = window.sessionStorage.ip || $('input#input-ip').val();
+        var url = 'http://' + ip + '/account/logout';
+
+        var settings = {
+            url: url,
+            type: 'POST',
+            data: '',
+            dataType: 'json',
+            xhrFields: {withCredentials: true}
+        };
+
+        var callback = function(data, status, xhr) {
+            console.log(data)
+            if(data && data.statusCode) {
+
+                switch(parseInt(data.statusCode)){
+
+                    case 302:
+
+                        window.location = data.url.trim() + '.html';
+
+                        break;
+
+                    default:
+                }
+            }
+        }
+
+        $.ajax(settings).done(callback);
     }
 }
 
@@ -501,7 +537,7 @@ function startSurvey(e) {
                     renderQuestion(data);
 
                     /*set the buttons to visible */
-                    $('p#p-form-buttons').show();
+                    $('div#p-form-buttons').show();
                     break;
             }
         }
@@ -513,26 +549,3 @@ function startSurvey(e) {
 function error(data) {
 
 }
-
-/*
-$(document).ready(function() {
-    $('button#button-start-survey').on('click', function(e){
-        var settings = {
-            url: '/survey/start',
-            type: 'GET',
-            data: '',
-            dataType: 'json'
-        };
-
-        var callback = function(data) {
-            renderQuestion(data);
-        }
-
-        $.ajax(settings).done(callback);
-    });
-
-
-    $('button#button-logout').on('click', logout);
-})
-
-    */

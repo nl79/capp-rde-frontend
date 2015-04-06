@@ -1,9 +1,3 @@
-body
-{
-overflow-y:hidden;
-}
-
-
 /* adjust body when menu is open */
 body.slide-active {
     overflow-x: hidden
@@ -96,7 +90,7 @@ body.slide-active {
 	    border-top: 0
 	}
 	#slide-nav.navbar-inverse #slidemenu {
-	    background: #193441;
+	    background: #333
 	}
 	/* this is behind the navigation but the navigation is not inside it so that the navigation is accessible and scrolls*/
 	#navbar-height-col {
@@ -109,7 +103,7 @@ body.slide-active {
 	    background: #f7f7f7;
 	}
 	#navbar-height-col.inverse {
-	    background: #193441;
+	    background: #333;
 	    z-index: 1;
 	    border: 0;
 	}
@@ -137,160 +131,4 @@ body.slide-active {
 	.navbar-header {
 	    left: 0!important
 	}
-}
-
-
-.site-footer {
-
-
-	background-color: #4099FF;
-	color: white;
-	margin-top: 70px;
-	padding-top: 20px;
-
-}
-
-.bottom-footer {
-
-	border-top: 1px solid yellow;
-	margin-top:10px;
-	padding-top:10px;
-	color: white;
-}
-
-
-.footer-nav {
-
-	text-align:right;
-	text-decoration: none;
-
-}
-
-
-.footer-nav li {
-
-	display: inline;
-	padding: 0px 10px;
-
-}
-
-
-.footer-nav a{
-
-	color: white;
-}
-
-
-html,
-      body {
-        height: 100%;
-        /* The html and body elements cannot have any padding or margin. */
-      }
-
-      /* Wrapper for page content to push down footer */
-      #wrap {
-        min-height: 100%;
-        height: auto !important;
-        height: 100%;
-        /* Negative indent footer by it's height */
-        margin: 0 auto -60px;
-      }
-
-      /* Set the fixed height of the footer here */
-      #push,
-      #footer {
-        height: 60px;
-      }
-      #footer {
-        background-color: #f5f5f5;
-      }
-
-      /* Lastly, apply responsive CSS fixes as necessary */
-      @media (max-width: 767px) {
-        #footer {
-          margin-left: -20px;
-          margin-right: -20px;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-      }
-
- #footer {
-
- 	background-color: #3E606F;
- }
-
-.navbar-inverse {
-
-	background-color: #225378;
-	border-color: #3E606F;
-}
-
-.navbar-inverse .navbar-brand {
-color: #FCFFF5;
-}
-
-body {
-
-	background-color: #ACF0F2;
-}
-
-.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
-color: #FCFFF5;
-background-color: #193441;
-}
-
-.modal-header {
-
-	background-color: #3E606F;
-
-}
-
-.modal-body{
-
-	background-color: #acf0f2;
-}
-
-.modal-footer{
-
-	background-color: #acf0f2;
-}
-
-.panel-body {
-
-	background-color: #f3ffe2;
-}
-
-.input-group-addon.danger {
-    color: rgb(255, 255, 255);
-    background-color: rgb(217, 83, 79);
-    border-color: rgb(212, 63, 58);
-}
-
-.input-group-addon.success {
-    color: rgb(255, 255, 255);
-    background-color: rgb(92, 184, 92);
-    border-color: rgb(76, 174, 76);
-}
-
-
-div.img-div{
-    height:200px;
-    width:200px;
-    overflow:hidden;
-    border-radius:50%;
-}
-
-.img-div img{
-    -webkit-transform:translate(-50%);
-    margin-left:100px;
-}
-
-.circle-image{
-    width:200px;
-    height:200px;
-    border-radius:50%;
-    background-image:url("http://placekitten.com/g/200/400");
-    display:block;
-    background-position-y:25% 
 }

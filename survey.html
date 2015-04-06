@@ -44,8 +44,8 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Survey Page</a></li>
                 <li><a href="#about">Terms of Agreement</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-                <li><a href="#exit">Logout</a></li>
+                <li><a href="#contact" data-toggle="modal">Contact</a></li>
+                <li><a onclick="logout(this)" href="#exit">Logout</a></li>
                 <li><button type="button" onclick="config(this)" class="btn btn-primary">Settings</button></li>
 
             </ul>
@@ -57,18 +57,78 @@
 
 <!--wrap the page content do not style this -->
 <div id="page-content">
-    <div id="div-content">
 
-        <p class="text-center">
-            <button id="button-start-survey"
-                    type="button"
-                    class="btn btn-info"
-                    onclick="startSurvey(this)"
-                    name="start-survey">START SURVEY</button>
-        </p>
+    <div class="container">
 
+
+        <p><br/></p>
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+
+
+
+
+
+
+
+                        <div id="div-content">
+
+                            <p class="text-center">
+                                <button id="button-start-survey"
+                                        type="button"
+                                        class="btn btn-info"
+                                        onclick="startSurvey(this)"
+                                        name="start-survey">START SURVEY</button>
+                            </p>
+
+                        </div>
+
+
+                        <br />
+
+                        <div id='p-form-buttons' style="text-align:center" hidden >
+                            <a  onclick='getQuestion(this)'
+                                id='button-previous'
+                                value='previous'
+                                class="btn btn-primary">
+                                <span class="glyphicon glyphicon-arrow-left"></span></a>
+
+                            <a  onclick='getQuestion(this)'
+                                id='button-next'
+                                value='next'
+                                class="btn btn-primary">
+                                <span class="glyphicon glyphicon-arrow-right"></span></a>
+
+                            <br />
+                            <a  onclick='getQuestion(this)'
+                                id='button-skip'
+                                value='skip'
+                                class="btn btn-primary">
+                                <span class="glyphicon glyphicon-arrow-right">   SKIP </span></a>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+
+
+
+
+
+    <!--
     <p id='p-form-buttons' class="text-center" hidden>
 
         <button class='btn btn-info' onclick='getQuestion(this)'
@@ -82,56 +142,46 @@
         type='button' name='submit' value='skip'>Skip</button>
 
     </p>
+    -->
 
+<!-- THIS IS FOR THE MODAL CONTACT PAGE, HIDDEN ON STARTUP-->
+    <div class="modal fade" id="contact" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" role="form">
+                    <div class="modal-header">
+                        <h4 style="color: white;">Contact US<h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="contact-name" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="contact-name" placeholder="First & Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="contact-email" placeholder="example@domain.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message" class="col-sm-2 control-label">Message</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-default" data-dismiss="modal">Close</a>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-    <!-- <div class="container">
-
-
-      <div class="box1" action="#">
-          <form class="form-horizontal">
-              <div class="form-group">
-              <br>
-              <h3> Question 1 </h3>
-
-          <div class="checkbox">
-              <label>
-              <input type="checkbox" value="">
-              Answer 1
-              </label>
-          </div>
-          <div class="checkbox">
-              <label>
-              <input type="checkbox" value="">
-              Answer 2
-              </label>
-          </div>
-          <div class="checkbox">
-              <label>
-              <input type="checkbox" value="">
-              Answer 3
-              </label>
-          </div>
-          <div class="checkbox">
-              <label>
-              <input type="checkbox" value="">
-              Answer 4
-              </label>
-          </div>
-          <input type="submit" value="Submit" class="sub1">
-
-          </form>
-
-          </div> <!--div for box1
-
-       <p class="text-center">
-           <button type="button" class="btn btn-info">Previous</button>
-           <button type="button" class="btn btn-info">Next</button>
-           <button type="button" class="btn btn-info">Next</button>
-       </p>
-
-
-
-  </div> -->
+</div> -->
     <!-- /.container -->
 
 </div>
