@@ -4,6 +4,25 @@ overflow-y:hidden;
 }
 
 
+
+/* alert styles */
+#message {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    display: none
+}
+#inner-message {
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
 /* adjust body when menu is open */
 body.slide-active {
     overflow-x: hidden

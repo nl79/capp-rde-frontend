@@ -320,8 +320,8 @@ function isValid() {
          */
         if(checked == false) {
 
-            alert('Please Select an Answer, or Click Skip to skip the question');
-
+            //alert('Please Select an Answer, or Click Skip to skip the question');
+            message('Please Select an Answer, or Click Skip to skip the question', 'error');
             return false;
         }
 
@@ -331,7 +331,7 @@ function isValid() {
          */
         if($(answers[0]).val() == "") {
 
-            alert('Please Enter an Answer or Select Skip to skip the question');
+            message('Please Enter an Answer or Select Skip to skip the question');
 
             return false;
 
@@ -348,7 +348,7 @@ function isValid() {
 
                     /* try to convert the data into a unit timestamp */
                     if(isNaN(Date.parse(value))){
-                        alert('Value Must be a valid date.');
+                        message('Value Must be a valid date.', 'error');
 
                         return false;
                     }
@@ -360,7 +360,7 @@ function isValid() {
                     /* check that the value is a valid number */
                     if(isNaN(value)) {
 
-                        alert('Value Must be a valid currency amount.');
+                        message('Value Must be a valid currency amount.','error');
 
                         return false;
                     } else {
@@ -376,8 +376,8 @@ function isValid() {
                 case 'int':
 
                     if(isNaN(value) || value % 1 != 0) {
-
-                        alert('Value Must be a valid Integer.');
+                       
+                        message('Value Must be a valid Integer.','error');
 
                         return false;
                     }
@@ -386,7 +386,7 @@ function isValid() {
                 case 'float':
                     if(isNaN(value)) {
 
-                        alert('Value Must be a valid Number.');
+                        message('Value Must be a valid Number.', 'error');
 
                         return false;
                     }
@@ -534,10 +534,15 @@ function startSurvey(e) {
 
                     break;
                 case 200:
+
+                    /* extract the keys and build a progress bar */
+                    renderProgressBar(data.data);
+
                     renderQuestion(data);
 
                     /*set the buttons to visible */
                     $('div#p-form-buttons').show();
+
                     break;
             }
         }
@@ -546,6 +551,75 @@ function startSurvey(e) {
     $.ajax(settings).done(callback);
 }
 
-function error(data) {
+function renderProgressBar(data) {
+
+    if(!data) { return };
+
+    /*extract the question data in order to get the current id*/
+    var q_id = data.question[0].ENTITY_ID;
+
+    /*get the location of the current id from the keys array */
+    var keys = data.keys;
+
+
+    /* calcuate the percent complete by comparing the current versus the total count */
+    var currentIndex = keys.indexOf(q_id);
+
+    var percent = (currentIndex/keys.length) * 100;
+
+    /* update the progress bar with the percent complete */
+    $('div#div-progress').text(percent + "%").width(percent + '%');
+}
+
+function updateProgress() {
 
 }
+
+
+/*
+function alert(selector, delay) {
+    var alert = $(selector).alert();
+    window.setTimeout(function() { alert.alert('close') }, delay);
+}
+*/
+
+function message(msg, type, timeout) {
+
+    var timeout = timeout || 2000;
+
+    var style = "alert-";
+
+    /* build the message class value by type */
+    switch (type.toLowerCase()) {
+        case 'error':
+        case 'danger':
+            style += 'danger'
+            break;
+        case 'success':
+            style += 'success'
+            break;
+
+        case 'warning':
+            style += 'warning'
+            break;
+
+        case 'info':
+            style += 'info'
+            break;
+    }
+
+    /*ge ta refrence to the parent container */
+    var msgContainer = $('div#message');
+
+    /*get the child div element that will wrap the message text and set the msg*/
+    msgContainer.find('div#div-alert-text').addClass(style).text(msg);
+    msgContainer.slideDown();
+
+    setTimeout(function() {
+        msgContainer.fadeOut(480, function () {
+            msgContainer.find('div#div-alert-text').removeClass(style);
+        });
+       // msgContainer.find('div#div-alert-text').removeClass(style);
+    }, timeout);
+}
+
