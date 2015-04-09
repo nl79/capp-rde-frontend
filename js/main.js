@@ -266,19 +266,19 @@ function submitAnswer(ele){
     };
 
     var callback = function(data) {
-
+        console.log(data);
         if(data && data.statusCode) {
             switch(parseInt(data.statusCode)){
                 case 200:
-                    message(data);
+                    message(data.message, 'success');
                     break;
 
                 case 204:
-                    finished(data);
+                    message(data.message, 'info');
                     break;
 
                 case 400:
-                    error(data);
+                    message(data.message, 'error');
                     break;
             }
         }
@@ -331,7 +331,7 @@ function isValid() {
          */
         if($(answers[0]).val() == "") {
 
-            message('Please Enter an Answer or Select Skip to skip the question');
+            message('Please Enter an Answer or Select Skip to skip the question', 'error');
 
             return false;
 
@@ -376,7 +376,7 @@ function isValid() {
                 case 'int':
 
                     if(isNaN(value) || value % 1 != 0) {
-                       
+
                         message('Value Must be a valid Integer.','error');
 
                         return false;
@@ -486,7 +486,7 @@ function accountLogin() {
 
                 default:
 
-                    message(data.message);
+                    alert('login failed');
                     break;
 
             }
@@ -497,13 +497,15 @@ function accountLogin() {
 }
 
 function finished() {
-    alert('survey finished');
+    console.log('survey finished');
+
+    /* show a modal notifying that the survey has been finished and
+    offer to redirect to the maps page.
+     */
+
+    $("#myModal").modal('show');
 }
 
-function message(msg) {
-
-    $('p#p-message').text(msg);
-}
 
 function startSurvey(e) {
 
