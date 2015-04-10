@@ -106,7 +106,4 @@ $(document).ready(function() {
     
 });
 
-
-      
-      $('#sandbox-container .input-group.date').datepicker({
-});
+$('#sandbox-container .input-group.date').datepicker({ });

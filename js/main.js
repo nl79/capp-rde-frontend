@@ -47,83 +47,90 @@ function renderQuestion(resp) {
         html += '<form  class="form-horizontal text-" id="form-question-data" method="post" action="/survey/submitAnswer">';
         html += '<input id="q_id" type="hidden" name="q_id" value="' + question.ENTITY_ID + '"/>';
         html += '<input id="q_type" type="hidden" name="q_type" value="' + question.TYPE.trim() + '"/>';
-        html += '<input id="a_type" type="hidden" name="a_type" value="' + question.DATA_TYPE + '"/>';
+        html += '<input id="a_type" type="hidden" name="a_type" value="' + question.DATA_TYPE.trim() + '"/>';
 
 
         /*
         html += '<div class="form-group"><br />' +
         '<h3 id="h3-question">' + resp.data.question[0].QUESTION + '</h3></div>';
         */
-        var type = resp.data.question[0].TYPE.trim();
+        var type = resp.data.question[0].TYPE.trim().toLowerCase();
 
-        if(type == 'radio' || type=='checkbox') {
+        switch(type) {
 
-            if (options && options.length && options.length > 0) {
+            case 'radio':
+            case 'checkbox':
+                if (options && options.length && options.length > 0) {
 
-                /*
-                 if answer is not empty, create an array of values to check against.
-                 */
-                if(answer && answer.length && answer.length == 1) {
-                    var list = answer[0].VALUE.trim().split('|');
-                }
-
-                /*loop and build the options list.
-                 the values property of the input field must replace all comma ',' characters
-                 with a '~' because coldfusion uses ',' as a list separator. Therefore
-                 leaving the comma in place would split an option into pieces.
-                 */
-                for (var i = 0; i < options.length; i++) {
-
-                    var value = options[i].VALUE.trim()
-
-                    html += "<div class='" + type + "'>";
-                    html += "<label><input id='o_id-" + options[i].ENTITY_ID +
-                    "' type='" + type.trim() +
-                    "' name='answer'" +
-                    "' value='" + options[i].VALUE.trim().replace(',','~') + "'";
-
-                    /* check if the value exists in the options list. */
-                    if(list && list.indexOf(value) != -1) {
-                        html += " checked ";
+                    /*
+                     if answer is not empty, create an array of values to check against.
+                     */
+                    if(answer && answer.length && answer.length == 1) {
+                        var list = answer[0].VALUE.trim().split('|');
                     }
 
-                    html += "/>" + value + "</label></div><br />";
+                    /*loop and build the options list.
+                     the values property of the input field must replace all comma ',' characters
+                     with a '~' because coldfusion uses ',' as a list separator. Therefore
+                     leaving the comma in place would split an option into pieces.
+                     */
+                    for (var i = 0; i < options.length; i++) {
 
+                        var value = options[i].VALUE.trim()
+
+                        html += "<div class='" + type + "'>";
+                        html += "<label><input id='o_id-" + options[i].ENTITY_ID +
+                        "' type='" + type.trim() +
+                        "' name='answer'" +
+                        "' value='" + options[i].VALUE.trim().replace(',','~') + "'";
+
+                        /* check if the value exists in the options list. */
+                        if(list && list.indexOf(value) != -1) {
+                            html += " checked ";
+                        }
+
+                        html += "/>" + value + "</label></div><br />";
+
+                    }
                 }
-            }
-        } else if (type=='text') {
 
-            /*check if answer is set for the current question and
-             set the data inside the id field and the value.
-             */
-            html += "<textarea class='text' name='answer'>";
-            if(answer && answer.length && answer.length > 0) {
+                break;
 
-                html += answer[0].VALUE;
-            }
+            case 'date':
+            case 'text':
 
-            html += "</textarea><br />";
+                html += "<div class='" + type + "'>";
+                html += "<input id=''" +
+                "' type='" + type.trim() +
+                "' name='answer'" +
+                "' value='";
+
+                if(answer && answer.length && answer.length > 0) {
+
+                    html += answer[0].VALUE;
+                }
+
+                html += "' /></div><br />";
+
+                break;
+
+            case 'bigtext':
+
+                /*check if answer is set for the current question and
+                 set the data inside the id field and the value.
+                 */
+                html += "<textarea class='text' name='answer'>";
+                if(answer && answer.length && answer.length > 0) {
+
+                    html += answer[0].VALUE;
+                }
+
+                html += "</textarea><br />";
+                break;
+
         }
 
-        /*
-        html +='<p class="text-center">';
-        html += "<button class='btn btn-info' onclick='getQuestion(this)' " +
-        "id='button-previous' type='button' name='submit' value='previous'>Prev</button>";
 
-
-         html += "<button onclick='submitAnswer(this)' " +
-         "id='button-submit' type='button' name='submit' value='submit'>Submit</button>";
-
-
-        html += "<button class='btn btn-info' onclick='getQuestion(this)' " +
-        "id='button-next' type='button' name='submit' value='next'>Next</button>";
-
-
-        html += "<br />" +
-        "<button class='btn btn-info' onclick='getQuestion(this)' id='button-skip' " +
-        "type='button' name='submit' value='skip'>Skip</button>";
-        html += '</p>';
-        */
 
         html += '</form>';
 
@@ -176,11 +183,15 @@ function getQuestion(e) {
         if(data && data.statusCode) {
             switch(parseInt(data.statusCode)){
                 case 200:
+
                     renderQuestion(data);
+
                     break;
 
                 case 204:
+
                     finished(data);
+
                     break;
 
                 case 302:
@@ -227,10 +238,16 @@ function skipQuestion(e) {
                 switch(parseInt(data.statusCode)){
                     case 200:
 
+                        message("Question Skipped", 'info');
+
+                        updateProgress(q_id);
+
                         break;
 
                     case 400:
-                        error(data);
+
+                        message(data.message, 'error');
+
                         break;
                 }
             }
@@ -245,7 +262,10 @@ function submitAnswer(ele){
 
 
     /* if the data is not valid return false */
-    if(!isValid()) { return false; }
+    if(!isValid()) {
+
+        return false; }
+
 
     //serialize the form.
     var data = $('form#form-question-data').serialize();
@@ -257,6 +277,8 @@ function submitAnswer(ele){
 
     var url = 'http://' + ip + '/survey/save';
 
+    var q_id = $('input#q_id').val();
+
     var settings = {
         url: url,
         type: 'POST',
@@ -266,21 +288,32 @@ function submitAnswer(ele){
     };
 
     var callback = function(data) {
-        console.log(data);
+
         if(data && data.statusCode) {
             switch(parseInt(data.statusCode)){
                 case 200:
+
                     message(data.message, 'success');
+
+                    updateProgress(q_id);
+
                     break;
 
                 case 204:
                     message(data.message, 'info');
+
                     break;
 
                 case 400:
                     message(data.message, 'error');
+
+                    break;
+
+                default:
+                    console.log(data);
                     break;
             }
+
         }
     }
 
@@ -416,7 +449,7 @@ function logout() {
         };
 
         var callback = function(data, status, xhr) {
-            console.log(data)
+
             if(data && data.statusCode) {
 
                 switch(parseInt(data.statusCode)){
@@ -486,7 +519,9 @@ function accountLogin() {
 
                 default:
 
-                    alert('login failed');
+                    //alert('login failed');
+                    $('p#p-message').text(data.message);
+
                     break;
 
             }
@@ -497,7 +532,6 @@ function accountLogin() {
 }
 
 function finished() {
-    console.log('survey finished');
 
     /* show a modal notifying that the survey has been finished and
     offer to redirect to the maps page.
@@ -525,6 +559,7 @@ function startSurvey(e) {
     };
 
     var callback = function(data) {
+
         if(data && data.statusCode) {
 
             switch(parseInt(data.statusCode)){
@@ -532,7 +567,7 @@ function startSurvey(e) {
                 case 401:
 
                     /* redirect to login */
-                    //window.location = 'index.html';
+                    window.location = 'index.html';
 
                     break;
                 case 200:
@@ -560,9 +595,14 @@ function renderProgressBar(data) {
     /*extract the question data in order to get the current id*/
     var q_id = data.question[0].ENTITY_ID;
 
-    /*get the location of the current id from the keys array */
+    /*get the location of the current id from the keys array
+     * store the keys array globally so that methods are able to
+      * update the progress bar as the questions are saved.
+     */
+
     var keys = data.keys;
 
+    window.survey = {keys: keys};
 
     /* calcuate the percent complete by comparing the current versus the total count */
     var currentIndex = keys.indexOf(q_id);
@@ -573,8 +613,35 @@ function renderProgressBar(data) {
     $('div#div-progress').text(percent + "%").width(percent + '%');
 }
 
-function updateProgress() {
+function updateProgress(id) {
 
+    /* if the id was not supplied, retrieve it from the hidden form field*/
+    var q_id = id;
+
+
+    if(!q_id || isNaN(q_id) || !window.survey.keys) {
+        message('Failed to Update Progress. Invalid Key Supplied', 'error');
+        return;
+    }
+
+    /* get the keys array from the window object. */
+    var keys = window.survey.keys;
+
+    /*get the index of the currently saved question */
+    var index = keys.indexOf(parseInt(q_id)) + 1;
+
+    console.log(q_id);
+    console.log(keys);
+    console.log(index);
+
+
+    /*calcuate the percentage of completed questions */
+    var percent = (index/keys.length) * 100;
+
+    console.log(percent);
+
+    /*update the progress bar*/
+    $('div#div-progress').text(percent + "%").width(percent + '%');
 }
 
 
