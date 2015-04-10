@@ -60,20 +60,11 @@
 
     <div class="container">
 
-
-        <p><br/></p>
         <div class="row">
             <div class="col-md-8"></div>
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
-
-
-
-
-
-
-
 
                         <div id="message">
                             <div style="padding: 5px;">
@@ -88,7 +79,7 @@
                             <p class="text-center">
                                 <button id="button-start-survey"
                                         type="button"
-                                        class="btn btn-info"
+                                        class="btn btn-success"
                                         onclick="startSurvey(this)"
                                         name="start-survey">START SURVEY</button>
                             </p>
@@ -97,9 +88,40 @@
 
 
                         <br />
+                        <br />
+                        <br />
 
                         <div id='p-form-buttons' style="text-align:center" hidden >
-                            <a  onclick='getQuestion(this)'
+
+                            <div class="btn-group" role="group" aria-label="">
+                                <a  onclick='getQuestion(this)'
+                                                              id='button-previous'
+                                                              value='previous'
+                                                              class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-arrow-left"> PREV</span>
+                                </a>
+
+                                <a  onclick='getQuestion(this)'
+                                    id='button-skip'
+                                    value='skip'
+                                    class="btn btn-info">
+                                    <span class="">   SKIP </span>
+                                </a>
+
+
+                                <a  onclick='getQuestion(this)'
+                                                          id='button-next'
+                                                          value='next'
+                                                          class="btn btn-success">
+                                    <span class="glyphicon glyphicon-arrow-right">   SAVE</span>
+                                </a>
+
+                            </div>
+                            <br />
+                            <br />
+
+
+                           <!-- <a  onclick='getQuestion(this)'
                                 id='button-previous'
                                 value='previous'
                                 class="btn btn-primary">
@@ -117,7 +139,7 @@
                                 value='skip'
                                 class="btn btn-primary">
                                 <span class="glyphicon glyphicon-arrow-right">   SKIP </span></a>
-
+                            -->
                             <div class="progress">
                                 <div id='div-progress' class="progress-bar" role="progressbar" aria-valuenow="70"
                                      aria-valuemin="0" aria-valuemax="100" style="width:70%">
@@ -204,15 +226,18 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Confirmation</h4>
+                <h4 class="modal-title" style="color: white;">Survey Complete</h4>
             </div>
             <div class="modal-body">
-                <p>Do you want to save changes you made to document before closing?</p>
-                <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+                <p>Thank you for completing the survey, your feedback will greatly improve our
+                ability to serve you. </p>
+                <p class="text-warning"><small>If you would like to view a map all nearby hospitals click the "View Map" button.
+                    Otherwise you may click "Finished" to end the survey or "Back" to go back and modify any answers.</small></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Back</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">View Map</button>
+                <button type="button" class="btn btn-success">Finished</button>
             </div>
         </div>
     </div>
