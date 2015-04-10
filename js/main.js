@@ -42,7 +42,7 @@ function renderQuestion(resp) {
         //array of answer values.
         var answers = [];
 
-        var html = '<div class="panel-heading bg-info"><h4>'+ resp.data.question[0].QUESTION + '</h4></div>'
+        var html = '<div id="div-question-container" class="panel-heading bg-primary "><h4>'+ resp.data.question[0].QUESTION + '</h4></div>'
         //create the form element.
         html += '<form  class="form-horizontal text-" id="form-question-data" method="post" action="/survey/submitAnswer">';
         html += '<input id="q_id" type="hidden" name="q_id" value="' + question.ENTITY_ID + '"/>';
@@ -89,7 +89,7 @@ function renderQuestion(resp) {
                             html += " checked ";
                         }
 
-                        html += "/>" + value + "</label></div><br />";
+                        html += "/>&nbsp" + value + "</label></div><br />";
 
                     }
                 }
@@ -607,7 +607,7 @@ function renderProgressBar(data) {
     /* calcuate the percent complete by comparing the current versus the total count */
     var currentIndex = keys.indexOf(q_id);
 
-    var percent = (currentIndex/keys.length) * 100;
+    var percent = Math.ceil((currentIndex/keys.length) * 100);
 
     /* update the progress bar with the percent complete */
     $('div#div-progress').text(percent + "%").width(percent + '%');
@@ -630,13 +630,8 @@ function updateProgress(id) {
     /*get the index of the currently saved question */
     var index = keys.indexOf(parseInt(q_id)) + 1;
 
-    console.log(q_id);
-    console.log(keys);
-    console.log(index);
-
-
     /*calcuate the percentage of completed questions */
-    var percent = (index/keys.length) * 100;
+    var percent = Math.ceil((index/keys.length) * 100);
 
     console.log(percent);
 
