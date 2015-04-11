@@ -1,6 +1,8 @@
 $(document).ready(function () {
 
 
+
+
     //stick in the fixed 100% height behind the navbar but don't wrap it
     $('#slide-nav.navbar-inverse').after($('<div class="inverse" id="navbar-height-col"></div>'));
   
@@ -61,10 +63,41 @@ $(document).ready(function () {
 
 
 
+    /* add on swipe left hander to check if the
+     side bar menu is open, if so close it.
+     */
+    $(window).on('swipeleft', function() {
+
+        /*check if the body has 'slide-active' element
+         if so close the menu
+         */
+        if($("body").hasClass('slide-active')) {
+            /* close the slide menu */
+            console.log('close');
+            //$( "#slide-nav" ).trigger( "click" );
+            $( "a#a-navbar-toggle" )[0].click();
+        }
+    })
+
+    /* add on swipe right handler to check if the sidebar menu is
+     close, if so open it.
+     */
+    $(window).on('swiperight', function() {
+
+        /*check if the navbar-height-col does not exist, open it */
+        if(!$("body").hasClass('slide-active')) {
+            /* open the slide menu */
+            console.log('open');
+            //$( "#slide-nav" ).trigger( "click" );
+            $( "a#a-navbar-toggle" )[0].click();
+        }
+    })
 
 });
 
 $(document).ready(function() {
+
+
     $('.input-group input[required], .input-group textarea[required], .input-group select[required]').on('keyup change', function() {
         var $form = $(this).closest('form'),
             $group = $(this).closest('.input-group'),
