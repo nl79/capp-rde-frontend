@@ -230,26 +230,24 @@ function skipQuestion(e) {
     };
 
     var callback = function(data) {
-
+        
         if(data && data.statusCode) {
 
-            if(data && data.statusCode) {
+            switch(parseInt(data.statusCode)){
 
-                switch(parseInt(data.statusCode)){
-                    case 200:
+                case 200:
 
-                        message("Question Skipped", 'info');
+                    message("Question Skipped", 'info');
 
-                        updateProgress(q_id);
+                    updateProgress(q_id);
 
-                        break;
+                    break;
 
-                    case 400:
+                case 400:
 
-                        message(data.message, 'error');
+                    message(data.message, 'error');
 
-                        break;
-                }
+                    break;
             }
         }
     }
