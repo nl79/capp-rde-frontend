@@ -26,6 +26,9 @@ a#a-navbar-toggle {
     margin: 0 auto;
 }
 
+div#div-panel-md4-body {
+    overflow-y: scroll;
+}
 /* div content wrapper */
 div#div-content {
 
@@ -39,7 +42,7 @@ input[type=text], input[type=date] {
     padding: 10px;
     width: 100%;
     text-align: center;
-    font-size: 160%;
+    font-size: 150%;
 }
 
 textarea {

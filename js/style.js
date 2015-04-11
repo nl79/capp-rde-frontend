@@ -6,7 +6,7 @@ $(document).ready(function () {
     /*set the content wrapper height to the screen height */
     /* set the content wrapper height */
     $('div#div-content-wrapper').height(_window.height());
-
+    $('div#div-panel-md4-body').height(_window.height() - 130);
 
     //stick in the fixed 100% height behind the navbar but don't wrap it
     $('#slide-nav.navbar-inverse').after($('<div class="inverse" id="navbar-height-col"></div>'));

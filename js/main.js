@@ -135,6 +135,10 @@ function renderQuestion(resp) {
         html += '</form>';
 
         document.getElementById('div-content').innerHTML = html;
+
+        //$('form#form-question-data').height($(window).height() - 390);
+
+        console.log($('form#form-question-data').offset());
     }
 
 }
@@ -230,7 +234,7 @@ function skipQuestion(e) {
     };
 
     var callback = function(data) {
-        
+
         if(data && data.statusCode) {
 
             switch(parseInt(data.statusCode)){
