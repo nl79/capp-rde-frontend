@@ -1,6 +1,11 @@
 $(document).ready(function () {
 
+    /*get a reference to the window object. */
+    var _window = $(window);
 
+    /*set the content wrapper height to the screen height */
+    /* set the content wrapper height */
+    $('div#div-content-wrapper').height(_window.height());
 
 
     //stick in the fixed 100% height behind the navbar but don't wrap it
@@ -52,12 +57,14 @@ $(document).ready(function () {
     var selected = '#slidemenu, #page-content, body, .navbar, .navbar-header';
 
 
-    $(window).on("resize", function () {
+    _window.on("resize", function () {
 
-        if ($(window).width() > 767 && $('.navbar-toggle').is(':hidden')) {
+
+        if (_window.width() > 767 && $('.navbar-toggle').is(':hidden')) {
             $(selected).removeClass('slide-active');
         }
-
+        /* set the content wrapper height */
+        $('div#div-content-wrapper').height(_window.height());
 
     });
 
@@ -66,7 +73,7 @@ $(document).ready(function () {
     /* add on swipe left hander to check if the
      side bar menu is open, if so close it.
      */
-    $(window).on('swipeleft', function() {
+    _window.on('swipeleft', function() {
 
         /*check if the body has 'slide-active' element
          if so close the menu
@@ -82,7 +89,7 @@ $(document).ready(function () {
     /* add on swipe right handler to check if the sidebar menu is
      close, if so open it.
      */
-    $(window).on('swiperight', function() {
+    _window.on('swiperight', function() {
 
         /*check if the navbar-height-col does not exist, open it */
         if(!$("body").hasClass('slide-active')) {

@@ -1,11 +1,18 @@
-body
+html, body
 {
     overflow-y:hidden;
-    overflow-x:hidden;
+    min-height: 100% !important;
+    height: 100%;
+}
+
+div#div-content-wrapper {
+    overflow-x: hidden;
 
 }
 
-
+a#a-navbar-toggle {
+    padding: 15px;
+}
 
 /* alert styles */
 #message {
@@ -164,16 +171,19 @@ body.slide-active {
 	    position: fixed;
 	    top: 0;
 	    height: 100%;
-      bottom:0;
+        bottom:0;
 	    width: 80%;
 	    left: -80%;
 	    background: #f7f7f7;
+
+
 	}
 	#navbar-height-col.inverse {
 	    background: #193441;
 	    z-index: 1;
 	    border: 0;
-	}
+
+    }
 	#slide-nav .navbar-form {
 	    width: 100%;
 	    margin: 8px 0;
