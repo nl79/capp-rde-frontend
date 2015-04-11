@@ -80,7 +80,7 @@ $(document).ready(function () {
          */
         if($("body").hasClass('slide-active')) {
             /* close the slide menu */
-            console.log('close');
+
             //$( "#slide-nav" ).trigger( "click" );
             $( "a#a-navbar-toggle" )[0].click();
         }
@@ -94,7 +94,7 @@ $(document).ready(function () {
         /*check if the navbar-height-col does not exist, open it */
         if(!$("body").hasClass('slide-active')) {
             /* open the slide menu */
-            console.log('open');
+            
             //$( "#slide-nav" ).trigger( "click" );
             $( "a#a-navbar-toggle" )[0].click();
         }
