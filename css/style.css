@@ -4,10 +4,19 @@ html, body
     min-height: 100% !important;
     height: 100%;
 }
+input#input-tos {
 
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(2.5); /* IE */
+    -moz-transform: scale(2.5); /* FF */
+    -webkit-transform: scale(2.5); /* Safari and Chrome */
+    -o-transform: scale(2.5); /* Opera */
+    padding: 10px;
+
+}
 div#div-content-wrapper {
     overflow-x: hidden;
-    background-color: #293e6a ;
+   background-color: #009999;
 }
 
 a#a-navbar-toggle {
@@ -76,7 +85,9 @@ h4#h4-question {
 
 
 
-
+div.btn-group a {
+    margin: 0 4px;
+}
 
 
 
@@ -122,7 +133,7 @@ body.slide-active {
     margin: 5px 0 0 0;
 }
 #slide-nav .navbar-toggle.slide-active .icon-bar {
-    background: orange
+    background: white;
 }
 .navbar-header {
     position: relative

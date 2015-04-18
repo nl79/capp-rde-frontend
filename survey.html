@@ -54,14 +54,14 @@
             </div>
             <div id="slidemenu">
 
-
+<!--
                 <form class="navbar-form navbar-right" role="form">
                     <div class="form-group">
                         <input type="search" placeholder="search" class="form-control">
                     </div>
                     <button type="button" class="btn btn-primary">Search</button>
                 </form>
-                s
+                -->
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Survey Page</a></li>
                     <li><a href="#tos" data-toggle="modal">Terms of Agreement</a></li>
@@ -162,7 +162,7 @@
                                     class="btn btn-primary">
                                     <span class="glyphicon glyphicon-arrow-right">   SKIP </span></a>
                                 -->
-                                <div class="progress">
+                                <div class="progress" style="background-color: white; border:1px solid blue">
                                     <div id='div-progress' class="progress-bar" role="progressbar" aria-valuenow="70"
                                          aria-valuemin="0" aria-valuemax="100" style="width:70%">
                                         70%
@@ -217,7 +217,7 @@
                 <div class="modal-header">
                     <h4 style="color: white;">Contact US<h4>
                 </div>
-                <div class="modal-body">
+                <div style="background-color:#F8F8F8" class="modal-body">
                     <div class="form-group">
                         <label for="contact-name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
@@ -237,7 +237,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" style="background-color:#F8F8F8">
                     <a class="btn btn-default" data-dismiss="modal">Close</a>
                     <button type="submit" class="btn btn-primary">Send</button>
                 </div>
@@ -254,16 +254,16 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" style="color: white;">Survey Complete</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="background-color:#F8F8F8">
                 <p>Thank you for completing the survey, your feedback will greatly improve our
                 ability to serve you. </p>
                 <p class="text-warning"><small>If you would like to view a map all nearby hospitals click the "View Map" button.
                     Otherwise you may click "Finished" to end the survey or "Back" to go back and modify any answers.</small></p>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="background-color:#F8F8F8">
                 <button type="button" class="btn btn-warning" data-dismiss="modal">Back</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">View Map</button>
-                <button type="button" class="btn btn-success">Finished</button>
+                <button onclick="logout(this)" type="button" class="btn btn-success">Finished</button>
             </div>
         </div>
     </div>
@@ -276,9 +276,9 @@
         <div class="modal-content">
             <form class="form-horizontal" role="form">
                 <div class="modal-header">
-                    <h4 style="color: black;">Terms Of Service</h4>
+                    <h4 style="color: white;">Terms Of Service</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="background-color:#F8F8F8">
                     <div class="form-group">
                         <label for="" class="col-sm-2 control-label">Privacy</label>
                         <div class="col-sm-10">
@@ -328,7 +328,7 @@
                     </div>
 
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" style="background-color:#F8F8F8">
                     <a class="btn btn-default" data-dismiss="modal">Close</a>
 
                 </div>

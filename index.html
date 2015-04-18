@@ -24,7 +24,7 @@
         
          <script type="text/javascript">
       $(document).ready(function() {
-        $('.carousel').carousel({interval: 7000});
+        //$('.carousel').carousel({interval: 7000});
       });
     </script>
 
@@ -68,13 +68,14 @@
         <input id="input-ip" type="hidden" name="ip" value="192.168.1.14">
 
      <div id="myCarousel" class="carousel container slide">
-      <!-- Carousel items -->
+
       <div class="carousel-inner">
-                <div class="active item one"></div>
-                <div class="item two"></div>
-                <div class="item three"></div>
+                <div class="active item two"></div>
+               <!-- <div class="item two"></div>
+                <div class="item three"></div> -->
       </div>
     </div>
+
 
   <div class="container">
                 <div class="row vertical-offset-100">
@@ -96,12 +97,15 @@
                                         </label>
                                         <br />
 
-                                        <a href="#tos" data-toggle="modal"><label class="">TOS</label></a>
+                                        <a href="#tos" data-toggle="modal"><label class="">Accept Terms of Service</label></a>
 
-                                        <input class="" placeholder="TOS" name="tos" type="checkbox">
+                                        <br />
+
+                                        <input id="input-tos" class="" name="tos" type="checkbox">
+
                                         <input class="form-control" placeholder="Enter Code" id="input-s_code" name='s_code' type="text">
-                                        <br></br>
-                                        <input class="btn btn-lg btn-success btn-block" onclick='accountLogin(this)' type="button" id="login" value="Start Survey">
+                                        <br/>
+                                        <input class="btn btn-lg btn-success btn-block" onclick='accountLogin(this)' type="button" id="login" value="Login">
 										
 										<input class="btn btn-lg btn-success btn-block" onclick='config(this)' type="button" id="button-config" value="Config">
                                    
