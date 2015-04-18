@@ -7,7 +7,7 @@ html, body
 
 div#div-content-wrapper {
     overflow-x: hidden;
-
+    background-color: #293e6a ;
 }
 
 a#a-navbar-toggle {
@@ -67,6 +67,11 @@ input[type=checkbox], input[type=radio]
 /* question divs */
 div#div-question-container {
     border-radius: 15px;
+
+}
+
+h4#h4-question {
+    font-size: 145%;
 }
 
 
@@ -88,6 +93,7 @@ body.slide-active {
     position: relative;
     padding-top: 70px;
     left: 0;
+    background-color: #009999  ;
 }
 #page-content.slide-active {
     padding-top: 0
@@ -120,6 +126,7 @@ body.slide-active {
 }
 .navbar-header {
     position: relative
+
 }
 /* un fix the navbar when active so that all the menu items are accessible */
 .navbar.navbar-fixed-top.slide-active {
@@ -217,7 +224,7 @@ body.slide-active {
 .site-footer {
 
 
-	background-color: #4099FF;
+	background-color: #293e6a ;
 	color: white;
 	margin-top: 70px;
 	padding-top: 20px;
@@ -255,10 +262,10 @@ body.slide-active {
 }
 
 
-html,
-      body {
+html, body {
         height: 100%;
         /* The html and body elements cannot have any padding or margin. */
+
       }
 
       /* Wrapper for page content to push down footer */
@@ -332,7 +339,7 @@ background-color: #193441;
 
 .panel-body {
 
-	background-color: #f3ffe2;
+	background-color: #F8F8F8 ;
 }
 
 .input-group-addon.danger {

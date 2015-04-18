@@ -42,7 +42,7 @@ function renderQuestion(resp) {
         //array of answer values.
         var answers = [];
 
-        var html = '<div id="div-question-container" class="panel-heading bg-primary "><h4>'+ resp.data.question[0].QUESTION + '</h4></div>'
+        var html = '<div id="div-question-container" class="panel-heading "><h4 id="h4-question">'+ resp.data.question[0].QUESTION + '</h4></div><hr />'
         //create the form element.
         html += '<form  class="form-horizontal text-" id="form-question-data" method="post" action="/survey/submitAnswer">';
         html += '<input id="q_id" type="hidden" name="q_id" value="' + question.ENTITY_ID + '"/>';
