@@ -66,7 +66,7 @@ function renderQuestion(resp) {
                      if answer is not empty, create an array of values to check against.
                      */
                     if(answer && answer.length && answer.length == 1) {
-                        var list = answer[0].VALUE.trim().split('|');
+                        var list = answer[0].VALUE.toString().trim().split('|');
                     }
 
                     /*loop and build the options list.
@@ -77,7 +77,7 @@ function renderQuestion(resp) {
                     for (var i = 0; i < options.length; i++) {
 
 
-                        var value = options[i].VALUE.toString().trim(); 
+                        var value = options[i].VALUE.toString().trim();
 
                         html += "<div class='" + type + "'>";
                         html += "<label><input id='o_id-" + options[i].ENTITY_ID +
