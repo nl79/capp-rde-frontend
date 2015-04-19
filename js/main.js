@@ -76,13 +76,14 @@ function renderQuestion(resp) {
                      */
                     for (var i = 0; i < options.length; i++) {
 
-                        var value = options[i].VALUE.trim()
+
+                        var value = options[i].VALUE.toString().trim(); 
 
                         html += "<div class='" + type + "'>";
                         html += "<label><input id='o_id-" + options[i].ENTITY_ID +
                         "' type='" + type.trim() +
                         "' name='answer'" +
-                        "' value='" + options[i].VALUE.trim().replace(',','~') + "'";
+                        "' value='" + options[i].VALUE.toString().trim().replace(',','~') + "'";
 
                         /* check if the value exists in the options list. */
                         if(list && list.indexOf(value) != -1) {
