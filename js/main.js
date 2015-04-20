@@ -690,3 +690,10 @@ function message(msg, type, timeout) {
     }, timeout);
 }
 
+function getGoogleMap(){
+
+    var url = "https://www.google.com/maps/search/nearby+hospitals";
+
+    window.location = url;
+}
+
