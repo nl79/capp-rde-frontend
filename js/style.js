@@ -60,7 +60,7 @@ $(document).ready(function () {
     _window.on("resize", function () {
 
 
-        if (_window.width() > 767 && $('.navbar-toggle').is(':hidden')) {
+        if (_window.width() > 867 && $('.navbar-toggle').is(':hidden')) {
             $(selected).removeClass('slide-active');
         }
         /* set the content wrapper height */

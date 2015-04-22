@@ -73,6 +73,7 @@ function renderQuestion(resp) {
                      with a '~' because coldfusion uses ',' as a list separator. Therefore
                      leaving the comma in place would split an option into pieces.
                      */
+
                     for (var i = 0; i < options.length; i++) {
 
 
@@ -358,7 +359,7 @@ function isValid() {
             return false;
         }
 
-    } else if(q_type == 'text') {
+    } else if(q_type == 'text' || q_type == 'bigtext') {
         /* if the answer is a text type, validate that the value of the
          textarea is not empty.
          */

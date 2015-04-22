@@ -144,7 +144,7 @@ body.slide-active {
     position: relative
 }
 /* screw writing importants and shit, just stick it in max width since these classes are not shared between sizes */
-@media (max-width:767px) { 
+@media (max-width:767px) {
 	#slide-nav .container {
 	    margin: 0!important;
 	    padding: 0!important;
@@ -219,7 +219,7 @@ body.slide-active {
 	    width: 100%
 	}
 }
-@media (min-width:768px) { 
+@media (min-width:768px) {
 	#page-content {
 	    left: 0!important
 	}
