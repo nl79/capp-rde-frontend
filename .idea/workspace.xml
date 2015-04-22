@@ -4,7 +4,6 @@
     <list default="true" id="e8ef9fb0-351a-45c5-9120-6c67a9add03b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="capp-rde-frontend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.58630526" vertical-offset="17214" max-vertical-offset="18025">
-              <caret line="705" column="0" selection-start-line="705" selection-start-column="0" selection-end-line="705" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="17224" max-vertical-offset="18125">
+              <caret line="705" column="43" selection-start-line="705" selection-start-column="43" selection-end-line="705" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -83,11 +82,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="3502">
-              <caret line="5" column="191" selection-start-line="5" selection-start-column="191" selection-end-line="5" selection-end-column="191" />
+            <state vertical-scroll-proportion="0.10074074" vertical-offset="0" max-vertical-offset="3502">
+              <caret line="4" column="78" selection-start-line="4" selection-start-column="78" selection-end-line="4" selection-end-column="78" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -114,8 +113,8 @@
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/js/style.js" />
         <option value="$PROJECT_DIR$/survey.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -850,21 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="3502">
-          <caret line="5" column="191" selection-start-line="5" selection-start-column="191" selection-end-line="5" selection-end-column="191" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#fieldset#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/survey.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-19.26923" vertical-offset="5432" max-vertical-offset="6120">
@@ -890,9 +874,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58630526" vertical-offset="17214" max-vertical-offset="18025">
-          <caret line="705" column="0" selection-start-line="705" selection-start-column="0" selection-end-line="705" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="17224" max-vertical-offset="18125">
+          <caret line="705" column="43" selection-start-line="705" selection-start-column="43" selection-end-line="705" selection-end-column="43" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10074074" vertical-offset="0" max-vertical-offset="3502">
+          <caret line="4" column="78" selection-start-line="4" selection-start-column="78" selection-end-line="4" selection-end-column="78" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#fieldset#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

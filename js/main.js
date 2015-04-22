@@ -702,6 +702,10 @@ function getGoogleMap(){
 
         url = "/@" + lat + "," + lon;
 
+
+        alert(lat + '\n' + lon + '\n' + url);
+
+
        // window.open(data, '_system');
 
 
@@ -710,6 +714,6 @@ function getGoogleMap(){
         'A general list of locations will be displayed ');
     });
 
-    window.location = url;
+    //window.location = url;
 }
 
