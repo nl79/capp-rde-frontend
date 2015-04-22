@@ -28,6 +28,13 @@
             // (default: 1000) (milliseconds) – More time than this, and it isn't a swipe.
             $.event.special.swipe.durationThreshold = 1000;
 
+
+            //set up the loader.
+            $.mobile.loader.prototype.options.text = "loading";
+            $.mobile.loader.prototype.options.textVisible = false;
+            $.mobile.loader.prototype.options.theme = "a";
+            $.mobile.loader.prototype.options.html = "";
+
         });
     </script>
 

@@ -1,4 +1,3 @@
-
 /*
 Polyfill  methods
  */
@@ -138,8 +137,6 @@ function renderQuestion(resp) {
         document.getElementById('div-content').innerHTML = html;
 
         //$('form#form-question-data').height($(window).height() - 390);
-
-        console.log($('form#form-question-data').offset());
     }
 
 }
@@ -692,6 +689,15 @@ function message(msg, type, timeout) {
 
 function getGoogleMap(){
 
+    $.mobile.loading( "show", {
+        text: "Loading Map",
+        textVisible: true,
+        theme: "a",
+        html: ""
+    });
+
+    console.log('here');
+
     var url = "https://www.google.com/maps/search/nearby+hospitals";
 
     navigator.geolocation.getCurrentPosition(function(pos) {
@@ -700,20 +706,20 @@ function getGoogleMap(){
         var lat = pos.coords.latitude;
         var lon = pos.coords.longitude;
 
-        url = "/@" + lat + "," + lon;
+        url += "/@" + lat + "," + lon +'z';
 
-
-        alert(lat + '\n' + lon + '\n' + url);
-
-
-       // window.open(data, '_system');
-
+        //alert(lat + '\n' + lon + '\n' + url);
+        //window.open(data, '_system');
 
     }, function(err) {
-        confirm('Error Retrieving Position. Please Make sure your locations is enabled.\n ' +
-        'A general list of locations will be displayed ');
+        var a = confirm('Error Retrieving Position. \n Please Make sure your locations is enabled.\n ' +
+        'A general list of locations will be displayed if you proceed.');
+
+        if(a == false) {
+            return;
+        }
     });
 
-    //window.location = url;
+    window.location = url;
 }
 
