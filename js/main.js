@@ -692,15 +692,24 @@ function message(msg, type, timeout) {
 
 function getGoogleMap(){
 
-    //var url = "https://www.google.com/maps/search/nearby+hospitals";
+    var url = "https://www.google.com/maps/search/nearby+hospitals";
 
     navigator.geolocation.getCurrentPosition(function(pos) {
 
         alert(pos);
+        var lat = pos.coords.latitude;
+        var lon = pos.coords.longitude;
+
+        url = "/@" + lat + "," + lon;
+
+       // window.open(data, '_system');
+
+
     }, function(err) {
-        alert(err);
+        confirm('Error Retrieving Position. Please Make sure your locations is enabled.\n ' +
+        'A general list of locations will be displayed ');
     });
 
-    //window.location = url;
+    window.location = url;
 }
 
