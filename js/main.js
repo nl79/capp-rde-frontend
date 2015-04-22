@@ -692,8 +692,15 @@ function message(msg, type, timeout) {
 
 function getGoogleMap(){
 
-    var url = "https://www.google.com/maps/search/nearby+hospitals";
+    //var url = "https://www.google.com/maps/search/nearby+hospitals";
 
-    window.location = url;
+    navigator.geolocation.getCurrentPosition(function(pos) {
+
+        alert(pos);
+    }, function(err) {
+        alert(err);
+    });
+
+    //window.location = url;
 }
 
