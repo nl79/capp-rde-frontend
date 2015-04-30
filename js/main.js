@@ -205,7 +205,8 @@ function getQuestion(e) {
                     break;
 
                 case 400:
-                    error(data);
+                case 404:
+                    message(data[data.type], data.type);
                     break;
             }
         }
@@ -294,19 +295,20 @@ function submitAnswer(ele){
             switch(parseInt(data.statusCode)){
                 case 200:
 
-                    message(data.message, 'success');
+                    message(data[data.type], data.type);
 
                     updateProgress(q_id);
 
                     break;
 
                 case 204:
-                    message(data.message, 'info');
+
+                    message(data[data.type], data.type);
 
                     break;
 
                 case 400:
-                    message(data.message, 'error');
+                    message(data[data.type], data.type);
 
                     break;
 
